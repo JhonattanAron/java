@@ -1,7 +1,7 @@
-public Class TestAuto{
+public class TestAuto{
 
 
-    public Static void main(String[] args){
+    public static void main(String[] args){
         Auto auto1 = new Auto("Ferrari" , 2023 , 15000);
         Auto auto2 = new Auto("Chevron" , 2023 , 15000);
         System.out.println(auto1.toString());
