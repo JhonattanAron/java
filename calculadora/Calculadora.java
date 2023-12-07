@@ -9,7 +9,10 @@ public class Calculadora{
         double suma = x + y + z;
         return suma / 3; 
     }
-    
+    public void mostrarResultado(){
+        System.out.println("Ahorita no joven, Sali al almuerzo. Regreso en 15 minutos");
+    }
+
 
 
 }
