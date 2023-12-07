@@ -1,6 +1,7 @@
 public class Calculadora{
-    public float Multiplicar(float x, float y){
+    public double Multiplicar(double x, double y){
         return x * y
     }
-    
+
+
 }
