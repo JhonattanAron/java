@@ -1,37 +1,42 @@
-public Class Auto{
-    private String marca;
-    private Int anio;
-    private String precio;
+package models;
 
-    piblic Auto(String marca, Int anio, float precio){
-        this.maraca = marca;
+public class Auto {
+    private String marca;
+    private int anio;
+    private double precio;
+
+    public Auto(String marca, int anio, float precio) {
+        this.marca = marca;
         this.anio = anio;
         this.precio = precio;
     }
 
-    public String getMarca(){
+    public String getMarca() {
         return marca;
     }
-    public Int getanio() {
+
+    public int getanio() {
         return anio;
     }
-    public float getPrecio(){
+
+    public double getPrecio() {
         return precio;
     }
 
     public void setMarca(String maraca) {
-        this.maraca = maraca;
+        this.marca = maraca;
     }
-    public void setanio(String anio) {
+
+    public void setanio(int anio) {
         this.anio = anio;
     }
-    public void setPrecio(String precio) {
+
+    public void setPrecio(double precio) {
         this.precio = precio;
     }
-    public String toString(){
-        return "Auto(" + marca +" Anio: " + anio +" Precio: " + precio +")";
+
+    public String toString() {
+        return "Auto(" + marca + " Anio: " + anio + " Precio: " + precio + ")";
     }
-
-
 
 }
