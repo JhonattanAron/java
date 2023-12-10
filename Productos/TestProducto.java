@@ -1,3 +1,6 @@
+package Productos;
+
+import Productos.models.*;
 
 public class TestProducto {
     /**
