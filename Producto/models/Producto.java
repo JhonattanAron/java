@@ -1,10 +1,10 @@
-public class Producto{
-    private String nombre ;
-    private String description ;
-    private float precio ;
-    private Int stockActual;
+public class Producto {
+    private String nombre;
+    private String description;
+    private double precio;
+    private int stockActual;
 
-    public Producto(String nombre, String description, float precio, Int stockActual) {
+    public Producto(String nombre, String description, double precio, int stockActual) {
         this.nombre = nombre;
         this.description = description;
         this.precio = precio;
@@ -18,25 +18,33 @@ public class Producto{
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
     public String getDescription() {
         return description;
     }
+
     public void setDescription(String description) {
         this.description = description;
     }
-    public float getPrecio() {
+
+    public double getPrecio() {
         return precio;
     }
-    public void setPrecio(float precio) {
+
+    public void setPrecio(double precio) {
         this.precio = precio;
     }
-    public String getStockActual() {
+
+    public int getStockActual() {
         return stockActual;
     }
-    public void setStockActual(String stockActual) {
-        this.stockActual = stockActual
+
+    public void setStockActual(int stockActual) {
+        this.stockActual = stockActual;
     }
+
     public String toString() {
-        return "Nombre: " + nombre + " Description: " + description + " Precio: " + precio + " StockActual: " + stockActual;
+        return "Nombre: " + nombre + " Description: " + description + " Precio: " + precio + " StockActual: "
+                + stockActual;
     }
 }

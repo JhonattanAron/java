@@ -1,4 +1,4 @@
-public class Main {
+public class TestCalculadora {
     public static void main(String[] args) {
         Calculadora calculadora = new Calculadora();
 
