@@ -1,8 +1,8 @@
-package clearminds.cuentas.test;
+package com.clearminds.cuentas.test;
 
 import java.util.ArrayList;
 
-import clearminds.cuentas.*;
+import com.clearminds.cuentas.*;
 
 public class TestCuenta {
 

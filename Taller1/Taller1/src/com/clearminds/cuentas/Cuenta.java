@@ -1,4 +1,4 @@
-package clearminds.cuentas;
+package com.clearminds.cuentas;
 
 /**
  * Cuenta
