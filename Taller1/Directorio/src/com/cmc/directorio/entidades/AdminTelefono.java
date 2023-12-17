@@ -1,7 +1,5 @@
 package com.cmc.directorio.entidades;
 
-import java.util.ArrayList;
-
 public class AdminTelefono {
 
     public void activarMensajeria(Telefono telefono) {
@@ -13,14 +11,23 @@ public class AdminTelefono {
     }
 
     public String contarMovi(Telefono[] telefonos) {
-        ArrayList<String> list = new ArrayList<>();
+        int i = 0;
         for (Telefono telefono : telefonos) {
-            int i = 0;
             if (telefono.getOperadora() == "movi") {
-                list.add(telefono.getOperadora());
+                i++;
             }
         }
-        return list.toString();
+        return "Telefonos con operadora movi: " + i;
+    }
+
+    public String contarClaro(Telefono[] telefonos) {
+        int i = 0;
+        for (Telefono telefono : telefonos) {
+            if (telefono.getOperadora() == "claro") {
+                i++;
+            }
+        }
+        return "Telefonos con operadora movi: " + i;
     }
 
 }
