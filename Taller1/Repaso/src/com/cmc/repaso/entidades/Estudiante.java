@@ -10,7 +10,12 @@ public class Estudiante {
     }
 
     public void calificar(double nota) {
-
+        this.nota = nota;
+        if (nota < 8) {
+            this.resultado = "F";
+        } else if (nota >= 8) {
+            this.resultado = "A";
+        }
     }
 
 }
