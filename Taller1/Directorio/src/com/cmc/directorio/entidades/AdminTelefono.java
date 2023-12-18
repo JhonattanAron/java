@@ -27,7 +27,7 @@ public class AdminTelefono {
                 i++;
             }
         }
-        return "Telefonos con operadora movi: " + i;
+        return "Telefonos con operadora Claro: " + i;
     }
 
 }

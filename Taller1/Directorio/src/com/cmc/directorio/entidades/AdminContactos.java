@@ -1,0 +1,29 @@
+package com.cmc.directorio.entidades;
+
+public class AdminContactos {
+    public Contacto buscarMasPesado(Contacto contacto1, Contacto contacto2) {
+        double peso1 = contacto1.getPeso();
+        double peso2 = contacto2.getPeso();
+        if (peso1 > peso2) {
+            return contacto1;
+        } else {
+            return contacto2;
+        }
+    }
+
+    public boolean compararOperadoras(Contacto contacto1, Contacto contacto2) {
+        if (contacto1.getTelefono().getOperadora() == contacto2.getTelefono().getOperadora()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void activarUsuario(Contacto contacto) {
+        if (contacto.getTelefono().getTieneWhatsapp() == true) {
+            contacto.setActivo(true);
+        } else {
+            contacto.setActivo(false);
+        }
+    }
+}

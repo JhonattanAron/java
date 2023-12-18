@@ -9,8 +9,9 @@ public class TestTelefono3 {
         Telefono[] telefonos = new Telefono[3];
         telefonos[0] = new Telefono("movi", "09932705554", 10);
         telefonos[1] = new Telefono("movi", "09932705632", 3);
-        telefonos[2] = new Telefono("movi", "09932758954", 11);
+        telefonos[2] = new Telefono("claro", "09932758954", 11);
 
         System.out.println(adminTelefono.contarMovi(telefonos));
+        System.out.println(adminTelefono.contarClaro(telefonos));
     }
 }
