@@ -9,6 +9,31 @@ public class MaquinaDulces {
     private Celda celda4;
     private double saldo;
 
+    public void configurarMaquina(String codigo1, String codigo2, String codigo3, String codigo4) {
+        celda1.setCodigo(codigo1);
+        celda1.setCodigo(codigo2);
+        celda1.setCodigo(codigo3);
+        celda1.setCodigo(codigo4);
+    }
+
+    public void mostrarConfiguracion() {
+        System.out.println(
+                "Configuracion\n" +
+                        "----------------" +
+                        "\nCodigo Celda1: " + celda1.getCodigo() +
+                        "\nCodigo Celda2: " + celda1.getCodigo() +
+                        "\nCodigo Celda3: " + celda1.getCodigo() +
+                        "\nCodigo Celda4: " + celda1.getCodigo() +
+                        "\n----------------" +
+                        "Saldo Actal:" + getSaldo()
+
+        );
+    }
+
+    public void cargarProducto() {
+
+    }
+
     public Celda getCelda1() {
         return celda1;
     }
