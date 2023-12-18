@@ -2,11 +2,15 @@ package com.clearminds.componentes;
 
 public class Celda {
     private Producto producto;
-    private int stock;
+    private int stock = 0;
     private String codigo;
 
     public Celda(String codigo) {
         this.codigo = codigo;
+    }
+
+    public Celda() {
+
     }
 
     public void ingresarProducto(Producto producto, int stock) {
