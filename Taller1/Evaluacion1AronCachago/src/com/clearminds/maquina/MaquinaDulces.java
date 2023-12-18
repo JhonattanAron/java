@@ -1,178 +1,136 @@
 package com.clearminds.maquina;
 
+import java.util.ArrayList;
+
 import com.clearminds.componentes.Celda;
 import com.clearminds.componentes.Producto;
 
 public class MaquinaDulces {
-    private Celda celda1 = new Celda();
-    private Celda celda2 = new Celda();
-    private Celda celda3 = new Celda();
-    private Celda celda4 = new Celda();
+    private ArrayList<Celda> celdas = new ArrayList<>();
     private double saldo;
 
-    public void configurarMaquina(String codigo1, String codigo2, String codigo3, String codigo4) {
-        celda1.setCodigo(codigo1);
-        celda2.setCodigo(codigo2);
-        celda3.setCodigo(codigo3);
-        celda4.setCodigo(codigo4);
+    public MaquinaDulces() {
+    }
+
+    public MaquinaDulces(ArrayList<Celda> celdas, double saldo) {
+        this.celdas = celdas;
+        this.saldo = saldo;
+    }
+
+    public void agregarCelda(Celda celda) {
+        celdas.add(celda);
     }
 
     public void mostrarConfiguracion() {
-        System.out.println(
-                "Configuracion\n" +
-                        "----------------" +
-                        "\nCodigo Celda 1: " + celda1.getCodigo() +
-                        "\nCodigo Celda 2: " + celda2.getCodigo() +
-                        "\nCodigo Celda 3: " + celda3.getCodigo() +
-                        "\nCodigo Celda 4: " + celda4.getCodigo() +
-                        "\n----------------" +
-                        "\nSaldo Actual: " + getSaldo());
+        System.out.println("--------Celdas-------");
+        for (Celda celda : celdas) {
+            System.out.println("Codigo Celda: " + celda.getCodigo());
+        }
     }
 
     public Celda buscarCelda(String codigo) {
-        if (codigo.equals(getCelda1().getCodigo())) {
-            return getCelda1();
-        } else if (codigo.equals(getCelda2().getCodigo())) {
-            return getCelda2();
-        } else if (codigo.equals(getCelda3().getCodigo())) {
-            return getCelda3();
-        } else if (codigo.equals(getCelda4().getCodigo())) {
-            return getCelda4();
-        } else {
-            return null;
+        for (Celda celda : celdas) {
+            if (codigo.equals(celda.getCodigo())) {
+                return celda;
+            }
         }
+        return null;
     }
 
     public void cargarProducto(Producto producto, String codigoCelda, int items) {
         Celda celdaRecuperada = buscarCelda(codigoCelda);
-        celdaRecuperada.ingresarProducto(producto, items);
+        if (celdaRecuperada != null) {
+            celdaRecuperada.ingresarProducto(producto, items);
+        }
     }
 
     public void mostrarProductos() {
-        System.out.println(
-                "Configuracion\n" +
-                        "---Celda 1-----" +
-                        "\nCodigo: " + celda1.getCodigo() +
-                        "\nStock: " + celda1.getStock() +
-                        "\n" + verificarProductos(celda1) +
-                        "---Celda 2-----" +
-                        "\nCodigo: " + celda2.getCodigo() +
-                        "\nStock: " + celda2.getStock() +
-                        "\n" + verificarProductos(celda2) +
-                        "---Celda 3-----" +
-                        "\nCodigo: " + celda3.getCodigo() +
-                        "\nStock: " + celda3.getStock() +
-                        "\n" + verificarProductos(celda3) +
-                        "---Celda 4-----" +
-                        "\nCodigo: " + celda4.getCodigo() +
-                        "\nStock: " + celda4.getStock() +
-                        "\n" + verificarProductos(celda4));
+        for (Celda celda : celdas) {
+            System.out.println("CELDA:" + celda.getCodigo() +
+                    " Stock: " + celda.getStock() +
+                    verificarProductos(celda));
+        }
+        System.out.println("\nSaldo: " + getSaldo());
     }
 
     public String verificarProductos(Celda celda) {
         if (celda.getProducto() == null || celda.getProducto().getNombre() == null) {
-            return "La celda no tiene producto!!!!\n";
+            return " Sin Producto asignado";
         } else {
-            return "Producto Nombre: " + celda.getProducto().getNombre() +
-                    "\nProducto Precio: " + celda.getProducto().getPrecio() + "\n";
+            return " Producto:" + celda.getProducto().getCodigo() +
+                    " Precio:" + celda.getProducto().getPrecio();
         }
     }
 
-    public Producto buscarProductoEnCelda(String codigo) {
-        if (codigo.equals(getCelda1().getCodigo())) {
-            return getCelda1().getProducto();
-        } else if (codigo.equals(getCelda2().getCodigo())) {
-            return getCelda2().getProducto();
-        } else if (codigo.equals(getCelda3().getCodigo())) {
-            return getCelda3().getProducto();
-        } else if (codigo.equals(getCelda4().getCodigo())) {
-            return getCelda4().getProducto();
-        } else {
-            return null;
+    public Producto buscarProductoEnCelda(String codCelda) {
+        for (Celda celda : celdas) {
+            if (celda.getCodigo().equals(codCelda)) {
+                Producto producto = celda.getProducto();
+                return producto;
+            }
+        }
+        return null;
+    }
+
+    public double consultarPrecio(String codCelda) {
+        for (Celda celda : celdas) {
+            if (celda.getCodigo().equals(codCelda)) {
+                return celda.getProducto().getPrecio();
+            }
+        }
+        return 0;
+    }
+
+    public Celda buscarCeldaProducto(String codProducto) {
+        for (Celda celda : celdas) {
+            Producto producto = celda.getProducto();
+            if (producto != null && producto.getCodigo() == codProducto) {
+                return celda;
+            }
+        }
+        return null;
+    }
+
+    public void incrementarProductos(String codPro, int items) {
+        Celda celdaEncontrada = buscarCeldaProducto(codPro);
+        celdaEncontrada.setStock(items + celdaEncontrada.getStock());
+    }
+
+    public void vender(String codCelda) {
+        for (Celda celda : celdas) {
+            if (celda.getCodigo() == codCelda) {
+                celda.setStock(celda.getStock() - 1);
+                setSaldo(getSaldo() + celda.getProducto().getPrecio());
+            }
         }
     }
 
-    public double consultarPrecio(String codigo) {
-        if (codigo.equals(getCelda1().getCodigo())) {
-            return getCelda1().getProducto().getPrecio();
-        } else if (codigo.equals(getCelda2().getCodigo())) {
-            return getCelda2().getProducto().getPrecio();
-        } else if (codigo.equals(getCelda3().getCodigo())) {
-            return getCelda3().getProducto().getPrecio();
-        } else if (codigo.equals(getCelda4().getCodigo())) {
-            return getCelda4().getProducto().getPrecio();
-        } else {
-            return 0;
-        }
-    }
-
-    public Celda buscarCeldaProducto(String codigoProducto) {
-        if (celda1 != null && celda1.getProducto() != null && codigoProducto.equals(celda1.getProducto().getCodigo())) {
-            return getCelda1();
-        } else if (celda2 != null && celda2.getProducto() != null
-                && codigoProducto.equals(celda2.getProducto().getCodigo())) {
-            return getCelda2();
-        } else if (celda3 != null && celda3.getProducto() != null
-                && codigoProducto.equals(celda3.getProducto().getCodigo())) {
-            return getCelda3();
-        } else if (celda4 != null && celda4.getProducto() != null
-                && codigoProducto.equals(celda4.getProducto().getCodigo())) {
-            return getCelda4();
-        } else {
-            return null;
-        }
-    }
-
-    public void incrementarProductos(String codigoProducto, int items) {
-        Celda celdaEcontrada = buscarCeldaProducto(codigoProducto);
-        celdaEcontrada.setStock(celdaEcontrada.getStock() + items);
-    }
-
-    public void vender(String codigoCelda) {
-        Celda celdaEcontrada = buscarCeldaProducto(codigoCelda);
-        celdaEcontrada.setStock(celdaEcontrada.getStock() - 1);
-        double precioProducto = celdaEcontrada.getProducto().getPrecio();
-        setSaldo(precioProducto + getSaldo());
-    }
-
-    public double venderConCambio(String codigoCelda, double valorIngresado) {
-        Celda celda = buscarCelda(codigoCelda);
-        celda.setStock(celda.getStock() - 1);
-        double vuelto = valorIngresado - celda.getProducto().getPrecio();
-        setSaldo(celda.getProducto().getPrecio() + getSaldo());
+    public double venderConCambio(String codCelda, double val) {
+        Celda celdaEncontrada = buscarCelda(codCelda);
+        celdaEncontrada.setStock(celdaEncontrada.getStock() - 1);
+        double precioProducto = celdaEncontrada.getProducto().getPrecio();
+        setSaldo(getSaldo() + precioProducto);
+        double vuelto = val - precioProducto;
         return vuelto;
+
     }
 
-    public Celda getCelda1() {
-        return celda1;
+    public ArrayList<Producto> buscarMenores(double limite) {
+        ArrayList<Producto> productosMenores = new ArrayList<>();
+        for (Celda celda : celdas) {
+            if (celda.getProducto().getPrecio() <= limite) {
+                productosMenores.add(celda.getProducto());
+            }
+        }
+        return productosMenores;
     }
 
-    public void setCelda1(Celda celda1) {
-        this.celda1 = celda1;
+    public ArrayList<Celda> getCeldas() {
+        return celdas;
     }
 
-    public Celda getCelda2() {
-        return celda2;
-    }
-
-    public void setCelda2(Celda celda2) {
-        this.celda2 = celda2;
-    }
-
-    public Celda getCelda3() {
-        return celda3;
-    }
-
-    public void setCelda3(Celda celda3) {
-        this.celda3 = celda3;
-    }
-
-    public Celda getCelda4() {
-        return celda4;
-    }
-
-    public void setCelda4(Celda celda4) {
-        this.celda4 = celda4;
+    public void setCeldas(ArrayList<Celda> celdas) {
+        this.celdas = celdas;
     }
 
     public double getSaldo() {
