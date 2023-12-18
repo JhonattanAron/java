@@ -13,7 +13,7 @@ public class Producto {
         setPrecio(procentajeInc + precio);
     }
 
-    public Producto(String nombre, String codigo, double precio) {
+    public Producto(String codigo, String nombre, double precio) {
         this.nombre = nombre;
         this.precio = precio;
         this.codigo = codigo;
